@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECMAScript 6 - ES6</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="Co.opmart-Logo-PNG.png" type="image/x-icon">
+    <link rel="stylesheet" href="Chemistry.css">
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Heebo&family=Inter:wght@400;500&family=Josefin+Sans:wght@600&family=Kanit&family=Kaushan+Script&family=Kolker+Brush&family=Montserrat:wght@200&family=Oswald&family=Phudu:wght@300&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@400;500&family=Quicksand:wght@500&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400&family=Roboto:wght@900&family=Rubik:wght@500&family=Schibsted+Grotesk:wght@400;500;600&family=Sedgwick+Ave+Display&family=Tilt+Neon&family=Tilt+Prism&family=Titillium+Web:wght@300;400&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+        width: 100%;
+        height: 100vh;
+        background-color: #eee;
+        display: grid;
+        justify-content: center;
+        z-index: -1;
+    }
+
+    header {
+        width: 1100px;
+        height: 100%;
+        background-color: #fff;
+        position: relative;
+        z-index: 1;
+    }
+
+    header #head {
+        background-color: #FC2947;
+        width: 1100px;
+        height: 80px;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 100;
+    }
+
+    header #head .logo {
+        width: 80px;
+    }
+
+    header #head .logo img {
+        width: 120px;
+    }
+
+    header #head h2 {
+        width: 200px;
+        font-size: 40px;
+        text-transform: uppercase;
+        font-family: 'Sedgwick Ave Display', cursive;
+        text-align: center;
+        color: #F5EBEB;
+    }
+
+    #head .log {
+        width: 210px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+    }
+
+    #head .log a {
+        width: 100px;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        text-decoration: none;
+    }
+
+    #head .log a:hover i {
+        background-color: #FEFF86;
+
+    }
+
+    #head .log a:hover p {
+        color: #FEFF86;
+    }
+
+    #head .log a p {
+        font-size: 15px;
+        color: #fff;
+        margin-right: 4px;
+    }
+
+    #head .log a i {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: #FFD93D;
+        border-radius: 50%;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    header .main {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 85px;
+        z-index: 2;
+    }
+
+    header .main .list-nav {
+        position: fixed;
+        display: flex;
+        width: 1100px;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header .main .list-nav li {
+        position: relative;
+        list-style: none;
+        height: 100%;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0 1px;
+        border: 0.1px solid #eee;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    header .main .list-nav li:hover {
+        box-shadow: none;
+    }
+
+    header .main .list-nav li a {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #000;
+        z-index: 0;
+    }
+
+    header .main .list-nav li a p {
+        font-size: 12px;
+        z-index: 0;
+    }
+
+    header .main .list-nav li a i {
+        margin-right: 5px;
+        z-index: 0;
+    }
+
+    header .main .list-nav li::before {
+        content: '';
+        position: absolute;
+        background-color: #eee;
+        width: 0;
+        height: 100%;
+        bottom: 0;
+        left: auto;
+        right: 0;
+        transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        z-index: -1;
+    }
+
+    header .main .list-nav li:hover::before {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: auto;
+    }
+
+    header .animation {
+        width: 100%;
+        height: 350px;
+        position: relative;
+        z-index: -1;
+        top: 40px;
+    }
+
+    header .animation .box-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+    }
+
+    header .animation .box-content .box_1 {
+        width: 600px;
+        height: 100%;
+        display: flex;
+    }
+
+    header .animation .box-content .box_2 {
+        width: 400px;
+        height: 100%;
+    }
+
+    header .animation .box-content .box_1 img {
+        object-fit: cover;
+        width: 98%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+    }
+
+    header .animation .box-content .box_2 .img_1 {
+        width: 100%;
+        height: 50%;
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+    }
+
+    header .animation .box-content .box_2 .img_2 {
+        height: 50%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .animate-fading {
+        animation: fading 10s infinite;
+    }
+
+    @keyframes fading {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .mySlides3 {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+        position: relative;
+        background-repeat: no-repeat;
+    }
+
+    .display-container {
+        position: relative;
+        background-color: transparent;
+        width: 400px;
+        height: 100%;
+    }
+
+    .display-container .image_1 {
+        position: relative;
+        width: 100%;
+        height: 49%;
+        margin-bottom: 7px;
+    }
+
+    /*---Css Nút qua lại---*/
+    .button-left {
+        left: 1%;
+        font-size: 20px;
+    }
+
+    .button-right {
+        right: 1%;
+        font-size: 20px
+    }
+
+    .image-button {
+        border: none;
+        display: inline-block;
+        padding: 10px;
+        height: 50px;
+        vertical-align: middle;
+        overflow: hidden;
+        color: #fff;
+        background: #000;
+        position: absolute;
+        top: calc(50% - 25px);
+        opacity: 0.5;
+    }
+
+    .image-button:hover {
+        color: #000;
+        background: #ccc;
+    }
+
+    /*---Css Chấm tròn---*/
+    .badge {
+        text-align: center;
+        margin-bottom: 16px;
+        font-size: 20px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .badge-white {
+        color: #000 !important;
+        background-color: #fff !important
+    }
+
+    .image-badge {
+        display: inline-block;
+        border-radius: 50%;
+        height: 14px;
+        width: 14px;
+        border: 1px solid #ccc;
+    }
+
+    .image-badge:hover {
+        background: #fff;
+    }
+
+    /* image 2*/
+    .image_2 {
+        width: 100%;
+        height: 49%;
+        position: relative;
+    }
+
+    .image_2 .mySlides4 {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        display: none;
+    }
+
+    /* nut image 2*/
+    .image_2 .button-left-2 {
+        left: 1%;
+        font-size: 20px;
+        position: absolute;
+    }
+
+    .button-right-2 {
+        right: 1%;
+        font-size: 20px;
+        position: absolute;
+    }
+
+    .image-button2 {
+        border: none;
+        display: inline-block;
+        padding: 10px;
+        height: 50px;
+        vertical-align: middle;
+        overflow: hidden;
+        color: #fff;
+        background: #000;
+        position: absolute;
+        top: calc(50% - 15px);
+        opacity: 0.5;
+    }
+
+    .image-button2:hover {
+        color: #000;
+        background: #ccc;
+    }
+
+    /* Badge*/
+    .badge_2 {
+        text-align: center;
+        margin-bottom: 16px;
+        font-size: 20px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .badge-white_2 {
+        color: #000 !important;
+        background-color: #fff !important
+    }
+
+    .image-badge_2 {
+        display: inline-block;
+        border-radius: 50%;
+        height: 14px;
+        width: 14px;
+        border: 1px solid #ccc;
+    }
+
+    .image-badge_2:hover {
+        background: #fff;
+    }
+
+    #head .search {
+        position: relative;
+        background-color: #fff;
+        width: 380px;
+        height: 40px;
+        border-radius: 2px;
+        border: none;
+    }
+
+    #head .search input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        border-radius: 2px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    #head .search i {
+        position: absolute;
+        right: -10%;
+        top: 0;
+        font-size: 25px;
+        color: #ccc;
+        width: 50px;
+        height: 100%;
+        line-height: 40px;
+        background-color: #Fff;
+        text-align: center;
+    }
+
+    body .top {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        right: 30px;
+        top: 50%;
+        border-radius: 50%;
+    }
+
+    body .top a {
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body .top a:hover p {
+        display: block;
+    }
+
+    body .top a p {
+        position: absolute;
+        font-size: 12px;
+        bottom: -60%;
+        color: #ccc;
+        white-space: nowrap;
+        left: -12%;
+        display: none;
+    }
+
+    body .top a i {
+        font-size: 30px;
+        color: #000;
+    }
+</style>
+
+<body>
+    <div class="top">
+        <a href="#">
+            <i class='bx bxs-to-top'></i>
+            <p>Trang bắt đầu</p>
+        </a>
+    </div>
+    <header>
+        <div id="head">
+            <div class="logo">
+                <img src="Co.opmart-Logo-PNG.png" alt="">
+            </div>
+            <div class="search">
+                <input type="search" class="item-search" placeholder="Tìm kiếm...">
+                <i class='bx bx-search'></i>
+            </div>
+            <h2>Coop Mart</h2>
+            <div class="log">
+                <a href="Login.html">
+                    <p id="login">Login</p>
+                    <i class='bx bx-user-circle'></i>
+                </a>
+                <a href="Signup.html">
+                    <p id="sign">Signup</p>
+                    <i class='bx bxs-user-circle'></i>
+                </a>
+            </div>
+        </div>
+        <section class="main">
+            <ul class="list-nav">
+                <li>
+                    <a href="#">
+                        <i class='bx bx-home-alt'> </i>
+                        <p> Trang chủ</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxl-go-lang'></i>
+                        <p>FreeMax</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cart'></i>
+                        <p> Mua sắm</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bxl-gmail'></i>
+                        <p>Gmail</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bx-comment-dots'></i>
+                        <p>Message</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bx-phone-call'></i>
+                        <p>Giảm giá</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bx-heart'></i>
+                        <p>Yêu thích</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bx-bell'></i>
+                        <p>Thông báo</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bx-qr-scan'></i>
+                        <p> Mã QR</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+
+                        <i class='bx bx-user-voice'></i>
+                        <p>Hỗ trợ</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="animation">
+                <div class="box-content">
+                    <nav class="box_1">
+                        <img src="3-chuong-trinh-sale-thang-1-547x270.webp" class="mySlides2 animate-fading">
+                        <img src="img_1.jpg" class="mySlides2 animate-fading">
+                        <img src="img_2.webp" class="mySlides2 animate-fading">
+                        <img src="img_3.png" class="mySlides2 animate-fading">
+                        <img src="img_4.png" class="mySlides2 animate-fading">
+                        <img src="img_5.png" class="mySlides2 animate-fading">
+                        <img src="img_7.png" class="mySlides2 animate-fading">
+                        <img src="img_6.png" class="mySlides2 animate-fading">
+                    </nav>
+                    <div class="display-container">
+                        <div class="image_1">
+                            <img class="mySlides3 " src="a2.jpeg">
+                            <img class="mySlides3 " src="img_6.png ">
+                            <img class="mySlides3 " src="img_2.webp">
+
+                            <button class="image-button button-left" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="image-button button-right" onclick="plusDivs(1)">&#10095;</button>
+
+                            <div class="badge" style="width:100%">
+
+                                <span class="image-badge" onclick="currentDiv(1)"></span>
+                                <span class="image-badge" onclick="currentDiv(2)"></span>
+                                <span class="image-badge" onclick="currentDiv(3)"></span>
+                            </div>
+                        </div>
+                        <div class="image_2">
+                            <img class="mySlides4 " src="a1.jpg">
+                            <img class="mySlides4" src="img_4.png">
+                            <img class="mySlides4" src="img_2.webp">
+
+                            <button class="image-button2 button-left-2" onclick="plusDivs_2(-1)">&#10094;</button>
+                            <button class="image-button2 button-right-2" onclick="plusDivs_2(1)">&#10095;</button>
+
+                            <div class="badge_2" style="width:100%">
+
+                                <span class="image-badge_2" onclick="currentDiv_2(1)"></span>
+                                <span class="image-badge_2" onclick="currentDiv_2(2)"></span>
+                                <span class="image-badge_2" onclick="currentDiv_2(3)"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--Cart-->
+            <div class="container">
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/bag-1.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Buy Pazzo Polo Backpack for Men, Black-Blue |28L Water Resistant School Bags for Boys | 3
+                        </span>
+                        <div class="money">
+                            <b>420K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>21,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/bag-2.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Buy Pazzo Polo Backpack for Men, Black-Blue |28L Water Resistant School Bags for Boys | 3
+                        </span>
+                        <div class="money">
+                            <b>230K </b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>11,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/bag-3.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Buy Pazzo Polo Backpack for Men, Black-Blue |28L Water Resistant School Bags for Boys | 3
+                        </span>
+                        <div class="money">
+                            <b>630K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>30,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/balo-2.webp" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Balo Nam Cực Chất, Siêu Bền Chắc, Tối Ưu Cho Du Lịch, Fix Laptop 15,6 inch ROKIN VELOCITY
+                        </span>
+                        <div class="money">
+                            <b>520K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>24,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/bag-6.webp" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Cotton Tote Bag | The North Face
+                        </span>
+                        <div class="money">
+                            <b>180K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>9,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/balo-1.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Balo Nam Cao Cấp Âu Mỹ BANGE - 01 – Brado Shop
+                        </span>
+                        <div class="money">
+                            <b>330K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>15,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/balo-3.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Balo Nam - Balo Nam Đi làm - Balo đi học -Balo đi chơi - HD6
+                        </span>
+                        <div class="money">
+                            <b>750K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>34,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/balo-4.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Balo Nam Balo Cỡ Lớn Choose Hình Trụ Du Lịch Đi Chơi Đi Phượt (N1) - MixASale
+                        </span>
+                        <div class="money">
+                            <b>880K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>40,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/balo-5.jpg" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Lịch sử giá Hàng Hot balo đi học - balo phát sáng - balo thời trang nam nữ Đẳng Cấp Balo
+                            phát sáng Trong Đêm Balo Hót 2021 cập nhật 4/2023 - BeeCost
+
+                        </span>
+                        <div class="money">
+                            <b>950K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>47,00 $</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="cart_items">
+                    <a href="#">
+                        <div class="img_trademark">
+                            <img src="./Image/balo-6.png" alt="">
+                        </div>
+                        <span class="text_trademark">
+                            Mua balo nam đi học chính hãng, tiện lợi, giá cực hấp dẫn
+                        </span>
+                        <div class="money">
+                            <b>2.600.000K</b>
+                        </div>
+                        <div class="trademark">
+                            <p>Coop Mart</p>
+                        </div>
+                        <div class="dola">
+                            <span>120,00 $</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- collection trademark -->
+            <nav class="navbar">
+                <div class="content_items">
+                    <h4>Gợi ý hôm nay</h4>
+                </div>
+                <div class="main_trademark">
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Shoo.jpg" alt="">
+                                <p>iPhone 14 Pro Max (128GB) | Ưu đãi 7 triệu, nhiều hàng giá tốt</p>
+                                <span>
+                                    <b>đ 119.000</b>
+                                    <h5>Đã bán 1.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/qa1.jpg" alt="">
+                                <p>Bộ Quần Áo Thu Đông Nam Áo Khoác Nhẹ Khoá Kéo Phối Màu Thanh Lịch</p>
+                                <span>
+                                    <b>đ 78.000</b>
+                                    <h5>Đã bán 20.5k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/clothes_1.jpg" alt="">
+                                <p>[Mã FATRENDW3 giảm đến 30K đơn 99K] Bộ Quần Áo Mặc Nhà</p>
+                                <span>
+                                    <b>đ 99.000</b>
+                                    <h5>Đã bán 2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/trouser_and_shirt_1.jpg" alt="">
+                                <p>Bộ Quần Áo Nam Áo Sơ Mi Cổ Đức Phối Túi Kết Hợp Quần Jogger 
+                                </p>
+                                <span>
+                                    <b>đ 145.000</b>
+                                    <h5>Đã bán 10.1k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/Shoo-2.webp" alt="">
+                                <p>Giày Sneaker thể thao đế 5cm - G1742 Giày Bánh Mì - Giày Bốt Nữ 
+                                </p>
+                                <span>
+                                    <b>đ 220.000</b>
+                                    <h5>Đã bán 1.9k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/laptop.avif" alt="">
+                                <p>Shop the Dell XPS 15 laptop featuring 16:10 </p>
+                                <span>
+                                    <b>đ 1.998.000</b>
+                                    <h5>Đã bán 250</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/jacket-1.jpg" alt="">
+                                <p>Áo khoác nam da lộn, mẫu thiết kế trẻ trung 2022 | Shopee Việt Nam</p>
+                                <span>
+                                    <b>đ 250.000</b>
+                                    <h5>Đã bán 2.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/kinh.webp" alt="">
+                                <p>Gọng Kính Cận GUCCI GG0156 | Mắt Kính Hàng Hiệu</p>
+                                <span>
+                                    <b>đ 800.000</b>
+                                    <h5>Đã bán 978</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/bike.jpg" alt="">
+                                <p>Xe Đạp Đường Đua Thể Thao Tay Lái Cong LU HANKE</p>
+                                <span>
+                                    <b>đ 6.700.000</b>
+                                    <h5>Đã bán 12.7k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/qa_girl.jpg" alt="">
+                                <p>Giảm giá Bộ quần áo nữ, bộ thun nữ in 3d siêu chất - BeeCost</p>
+                                <span>
+                                    <b>đ 178.000</b>
+                                    <h5>Đã bán 5k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/dep.jpg" alt="">
+                                <p>dép gia đình dễ thương giá tốt Tháng 4, 2023 | Mua ngay </p>
+                                <span>
+                                    <b>đ 95.000</b>
+                                    <h5>Đã bán 2.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/dog.jpg" alt="">
+                                <p>dây xích thú cưng giá tốt Tháng 4, 2023 | Mua ngay Chăm Sóc Thú Cưng </p>
+                                <span>
+                                    <b>đ 198.000</b>
+                                    <h5>Đã bán 7.7k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- nav 2 -->
+            <nav class="navbar">
+                <div class="content_items">
+                    <h4>Trend</h4>
+                </div>
+                <div class="main_trademark">
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Shoo.jpg" alt="">
+                                <p>iPhone 14 Pro Max (128GB) | Ưu đãi 7 triệu, nhiều hàng giá tốt</p>
+                                <span>
+                                    <b>đ 119.000</b>
+                                    <h5>Đã bán 1.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/qa1.jpg" alt="">
+                                <p>Bộ Quần Áo Thu Đông Nam Áo Khoác Nhẹ Khoá Kéo Phối Màu Thanh Lịch</p>
+                                <span>
+                                    <b>đ 78.000</b>
+                                    <h5>Đã bán 20.5k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/clothes_1.jpg" alt="">
+                                <p>[Mã FATRENDW3 giảm đến 30K đơn 99K] Bộ Quần Áo Mặc Nhà</p>
+                                <span>
+                                    <b>đ 99.000</b>
+                                    <h5>Đã bán 2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/trouser_and_shirt_1.jpg" alt="">
+                                <p>Bộ Quần Áo Nam Áo Sơ Mi Cổ Đức Phối Túi Kết Hợp Quần Jogger 
+                                </p>
+                                <span>
+                                    <b>đ 145.000</b>
+                                    <h5>Đã bán 10.1k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/Shoo-2.webp" alt="">
+                                <p>Giày Sneaker thể thao đế 5cm - G1742 Giày Bánh Mì - Giày Bốt Nữ 
+                                </p>
+                                <span>
+                                    <b>đ 220.000</b>
+                                    <h5>Đã bán 1.9k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/laptop.avif" alt="">
+                                <p>Shop the Dell XPS 15 laptop featuring 16:10 </p>
+                                <span>
+                                    <b>đ 1.998.000</b>
+                                    <h5>Đã bán 250</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/jacket-1.jpg" alt="">
+                                <p>Áo khoác nam da lộn, mẫu thiết kế trẻ trung 2022 | Shopee Việt Nam</p>
+                                <span>
+                                    <b>đ 250.000</b>
+                                    <h5>Đã bán 2.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/kinh.webp" alt="">
+                                <p>Gọng Kính Cận GUCCI GG0156 | Mắt Kính Hàng Hiệu</p>
+                                <span>
+                                    <b>đ 800.000</b>
+                                    <h5>Đã bán 978</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/bike.jpg" alt="">
+                                <p>Xe Đạp Đường Đua Thể Thao Tay Lái Cong LU HANKE</p>
+                                <span>
+                                    <b>đ 6.700.000</b>
+                                    <h5>Đã bán 12.7k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/qa_girl.jpg" alt="">
+                                <p>Giảm giá Bộ quần áo nữ, bộ thun nữ in 3d siêu chất - BeeCost</p>
+                                <span>
+                                    <b>đ 178.000</b>
+                                    <h5>Đã bán 5k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/dep.jpg" alt="">
+                                <p>dép gia đình dễ thương giá tốt Tháng 4, 2023 | Mua ngay </p>
+                                <span>
+                                    <b>đ 95.000</b>
+                                    <h5>Đã bán 2.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/dog.jpg" alt="">
+                                <p>dây xích thú cưng giá tốt Tháng 4, 2023 | Mua ngay Chăm Sóc Thú Cưng </p>
+                                <span>
+                                    <b>đ 198.000</b>
+                                    <h5>Đã bán 7.7k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <nav class="navbar">
+                <div class="content_items">
+                    <h4>Hot thang 5</h4>
+                </div>
+                <div class="main_trademark">
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Shoo.jpg" alt="">
+                                <p>iPhone 14 Pro Max (128GB) | Ưu đãi 7 triệu, nhiều hàng giá tốt</p>
+                                <span>
+                                    <b>đ 119.000</b>
+                                    <h5>Đã bán 1.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/qa1.jpg" alt="">
+                                <p>Bộ Quần Áo Thu Đông Nam Áo Khoác Nhẹ Khoá Kéo Phối Màu Thanh Lịch</p>
+                                <span>
+                                    <b>đ 78.000</b>
+                                    <h5>Đã bán 20.5k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/clothes_1.jpg" alt="">
+                                <p>[Mã FATRENDW3 giảm đến 30K đơn 99K] Bộ Quần Áo Mặc Nhà</p>
+                                <span>
+                                    <b>đ 99.000</b>
+                                    <h5>Đã bán 2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/trouser_and_shirt_1.jpg" alt="">
+                                <p>Bộ Quần Áo Nam Áo Sơ Mi Cổ Đức Phối Túi Kết Hợp Quần Jogger 
+                                </p>
+                                <span>
+                                    <b>đ 145.000</b>
+                                    <h5>Đã bán 10.1k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/Shoo-2.webp" alt="">
+                                <p>Giày Sneaker thể thao đế 5cm - G1742 Giày Bánh Mì - Giày Bốt Nữ 
+                                </p>
+                                <span>
+                                    <b>đ 220.000</b>
+                                    <h5>Đã bán 1.9k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/laptop.avif" alt="">
+                                <p>Shop the Dell XPS 15 laptop featuring 16:10 </p>
+                                <span>
+                                    <b>đ 1.998.000</b>
+                                    <h5>Đã bán 250</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/jacket-1.jpg" alt="">
+                                <p>Áo khoác nam da lộn, mẫu thiết kế trẻ trung 2022 | Shopee Việt Nam</p>
+                                <span>
+                                    <b>đ 250.000</b>
+                                    <h5>Đã bán 2.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/kinh.webp" alt="">
+                                <p>Gọng Kính Cận GUCCI GG0156 | Mắt Kính Hàng Hiệu</p>
+                                <span>
+                                    <b>đ 800.000</b>
+                                    <h5>Đã bán 978</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/bike.jpg" alt="">
+                                <p>Xe Đạp Đường Đua Thể Thao Tay Lái Cong LU HANKE</p>
+                                <span>
+                                    <b>đ 6.700.000</b>
+                                    <h5>Đã bán 12.7k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/qa_girl.jpg" alt="">
+                                <p>Giảm giá Bộ quần áo nữ, bộ thun nữ in 3d siêu chất - BeeCost</p>
+                                <span>
+                                    <b>đ 178.000</b>
+                                    <h5>Đã bán 5k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/dep.jpg" alt="">
+                                <p>dép gia đình dễ thương giá tốt Tháng 4, 2023 | Mua ngay </p>
+                                <span>
+                                    <b>đ 95.000</b>
+                                    <h5>Đã bán 2.2k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                    <div class="childs_items">
+                        <a href="#">
+                            <div class="list_sp">
+                                <img src="./Image/Clothes/dog.jpg" alt="">
+                                <p>dây xích thú cưng giá tốt Tháng 4, 2023 | Mua ngay Chăm Sóc Thú Cưng </p>
+                                <span>
+                                    <b>đ 198.000</b>
+                                    <h5>Đã bán 7.7k</h5>
+                                </span>
+                            </div>
+                            <span class="sp">Tìm sản phẩm tương tự</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <!--Animation-->
+            <section class="section_2">
+                <span class="webkit_sticky">
+                    <p>CoopMart Mall</p>
+                    <p>| 7 Ngày Miễn Phí Trả Hàng </p>
+                    <p>| Hàng Chính Hãng 100% </p>
+                    <p>| Miễn Phí Vận chuyen </p>
+                </span>
+                 <div class="contents">
+                    <div class="animation_item1">
+                        <a href="#">
+                            <img src="Image/Animation/animation4.jpg" class="slideAnimation_2">
+                            <img src="Image/Animation/animation2.jpg" class="slideAnimation_2">
+                            <img src="Image/Animation/animation3.jpg" class="slideAnimation_2">
+                        </a>
+                    </div>
+                    <div class="item_trademark_2">
+            
+                    </div>
+                 </div>
+            </section>
+        </section>
+    </header>
+</body>
+<script src="che.js"></script>
+
+</html>
